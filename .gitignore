@@ -1,0 +1,6 @@
+# Ignore json config files but keep the example
+*.json
+!example.json
+
+# ignore the log file
+.jira_notifier.log
