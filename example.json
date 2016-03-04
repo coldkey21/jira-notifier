@@ -2,7 +2,7 @@
    "username":"<jira username>",
    "password":"<jira_password>",
    "notification":{  
-      "channel":"Get thes from dscheirer",
-      "jira_query":"<The following is an example> project = SW AND issuetype in (BUG, Epic, Problem, SIR, Story, Sub-task) AND status in (Resolved, Closed) AND resolution in (Unresolved, Fixed, Done) AND fixVersion = EMPTY"
+      "channel":"This comes from the slack API incoming webhooks",
+      "jira_query":"<The following is an example> project = TS AND issuetype in (BUG, Epic, Problem, SIR, Story, Sub-task) AND status in (Resolved, Closed) AND resolution in (Unresolved, Fixed, Done)"
    }
 }
