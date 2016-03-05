@@ -4,3 +4,6 @@
 
 # ignore the log file
 .jira_notifier.log
+
+# ignore the .p4 conifg files
+.p4*

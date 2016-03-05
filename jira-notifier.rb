@@ -9,6 +9,7 @@ require 'optparse'
 require 'jira'
 require 'json'
 require 'logger'
+require 'uri'
 
 class Notifier
 
@@ -36,7 +37,7 @@ class Notifier
             issues = @jira_client.Issue.jql(notification["jira_query"])
 
             if issues.any?
-                output = "The following issues need fix versions:\n"
+                output = "<" + options[:jira_server] + "/issues/?jql=" + URI.escape(notification["jira_query"]) + "|The following issues need fix versions:>\n"
 
                 issues.each do |issue|
                     output += "\t* <" + options[:jira_server] + "/browse/" + issue.key + "|" + issue.key + "> - " + issue.summary.chomp(".") + "\n"
