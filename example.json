@@ -1,4 +1,5 @@
 {  
+   "jira_server":"<Jira Server>",
    "username":"<jira username>",
    "password":"<jira_password>",
    "notification":{  

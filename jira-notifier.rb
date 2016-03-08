@@ -69,8 +69,7 @@ end
 
 logger = Logger.new(".jira_notifier.log")
 
-options = { :jira_server =>'https://jira.perforce.com:8443',
-            :slack_hooks_url => 'https://hooks.slack.com'}
+options = {:slack_hooks_url => 'https://hooks.slack.com'}
 
 OptionParser.new do |opts|
     opts.on("-d", "--debug") do
@@ -91,9 +90,11 @@ notifications = []
 
 hash.each do | key, value |
     case key
-    when "username"
+    when "jira_server"
+        options[:jira_server] = value
+    when "jira_username"
         options[:jira_username] = value
-    when "password"
+    when "jira_password"
         options[:jira_password] = value
     when "notification"
         notifications.push(value)
