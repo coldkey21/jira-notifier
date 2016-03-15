@@ -1,8 +1,10 @@
 {  
-   "username":"<jira username>",
-   "password":"<jira_password>",
+   "jira_server":"<Jira Server>",
+   "jira_username":"<jira username>",
+   "jira_password":"<jira_password>",
    "notification":{  
       "channel":"This comes from the slack API incoming webhooks",
-      "jira_query":"<The following is an example> project = TS AND issuetype in (BUG, Epic, Problem, SIR, Story, Sub-task) AND status in (Resolved, Closed) AND resolution in (Unresolved, Fixed, Done)"
+      "jira_query":"<The following is an example> project = TS AND issuetype in (BUG, Epic, Problem, SIR, Story, Sub-task) AND status in (Resolved, Closed) AND resolution in (Unresolved, Fixed, Done)",
+      "message":"<Whatever message you want>"
    }
 }
