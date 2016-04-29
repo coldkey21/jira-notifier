@@ -4,6 +4,9 @@
 # Usefull links
 #   https://api.slack.com/incoming-webhooks
 
+require 'rubygems'
+require 'bundler/setup'
+
 require 'net/http'
 require 'optparse'
 require 'jira'
