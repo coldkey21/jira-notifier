@@ -14,15 +14,15 @@ class Notifier
 
   def initialize(options, logger)
     @jira_client = JIRA::Client.new(
-      :site=>options[:jira_server],
+      :site=>options.fetch(:jira_server),
       :auth_type=>:basic,
-      :username=>options[:jira_username],
-      :password=>options[:jira_password],
+      :username=>options.fetch(:jira_username),
+      :password=>options.fetch(:jira_password),
       :context_path=>'',
       :ssl_verify_mode=>OpenSSL::SSL::VERIFY_NONE
     )
 
-    uri = URI.parse(options[:slack_hooks_url])
+    uri = URI.parse(options.fetch(:slack_hooks_url))
     @http = Net::HTTP.new(uri.host, uri.port)
     @http.use_ssl = true
     @http.verify_mode = OpenSSL::SSL::VERIFY_NONE
@@ -38,10 +38,10 @@ class Notifier
       issues = @jira_client.Issue.jql(notification["jira_query"])
 
       if issues.any?
-        output = "<" + options[:jira_server] + "/issues/?jql=" + CGI.escape(notification["jira_query"]) + "|" + notification["message"].to_s + ">\n"
+        output = format("<%s/issues/?jql=%s|%s>\n", options.fetch(:jira_server), CGI.escape(notification["jira_query"]), notification["message"].to_s)
 
         issues.each do |issue|
-          output += "\t* <" + options[:jira_server] + "/browse/" + issue.key + "|" + issue.key + "> - " + issue.summary.chomp(".") + "\n"
+          output << format("\t* <%s/browse/%s|%s> - %s\n", options.fetch(:jira_server), issue.key, issue.key, issue.summary.chomp("."))
         end
 
         unless options[:debug]
